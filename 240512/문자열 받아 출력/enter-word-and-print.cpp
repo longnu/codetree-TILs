@@ -1,15 +1,16 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main() {
     // 변수 선언
-    char c;
+    string s;
 
 	// 입력
-	cin >> c;
+	cin >> s;
     
     // 출력
-    cout << c;
+    cout << s;
     return 0;
 }
