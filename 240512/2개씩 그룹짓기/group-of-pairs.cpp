@@ -4,7 +4,7 @@ using namespace std;
 
 int N;
 #define INT_MAX 1000
-int arr [INT_MAX];
+int arr [2 * INT_MAX];
 
 int main() {
     // 여기에 코드를 작성해주세요.
