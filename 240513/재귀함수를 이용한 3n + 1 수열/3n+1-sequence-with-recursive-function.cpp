@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int cnt;
-recur(int n)
+int recur(int n)
 {
     if(n==1)
     {
