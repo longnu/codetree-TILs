@@ -18,7 +18,7 @@ int main() {
 
     sort(arr, arr+2 * N);
     int maxnum = -1;
-    for (int i = 0; i<2 * N; i++)
+    for (int i = 0; i<N; i++)
     {
         maxnum = max(maxnum, arr[i] + arr[2 * N-i-1]);
     }
