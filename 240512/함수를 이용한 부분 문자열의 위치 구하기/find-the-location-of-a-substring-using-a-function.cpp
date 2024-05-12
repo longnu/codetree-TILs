@@ -24,6 +24,7 @@ int FindIndex() {
         if(IsSubStr(i))
             return i;
     }
+    return -1;
 }
 
 
