@@ -22,8 +22,7 @@ int main() {
     sort(a.begin(), a.end());
     sort(b.begin(), b.end());
 
-    bool answer = panbyul(a,b);
-    if (answer)
+    if(a.compare(b) == 0)
     {
         cout << "Yes";
     }
@@ -31,7 +30,5 @@ int main() {
     {
         cout << "No";
     }
-
-
     return 0;
 }
