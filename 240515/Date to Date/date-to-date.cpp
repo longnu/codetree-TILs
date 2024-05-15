@@ -8,7 +8,7 @@ int main() {
     cin >> m1 >> d1 >> m2 >> d2;
     
     int month = m1, day = d1;
-    int elpased_days = 1;
+    int elpased_days = 0;
 
     int num_of_days[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
