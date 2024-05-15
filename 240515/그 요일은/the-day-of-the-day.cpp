@@ -34,7 +34,8 @@ int main() {
     int m1, d1, m2, d2;
     string A;
 
-    cin >> m1 >> d1 >> m2 >> d2 >> A;
+    cin >> m1 >> d1 >> m2 >> d2;
+    cin >>A;
 
     int curidx = returnidx(A);
 
