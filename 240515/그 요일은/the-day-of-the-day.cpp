@@ -27,7 +27,7 @@ int daysofdate(int month, int day)
     days = days + day;
     return days;
 }
-
+int answer;
 int main() {
     // 여기에 코드를 작성해주세요.
 
@@ -36,14 +36,19 @@ int main() {
 
     cin >> m1 >> d1 >> m2 >> d2 >> A;
 
-    int idx = returnidx(A);
+    int curidx = returnidx(A);
 
     int daysoffirst = daysofdate(m1, d1);
     int daysofsecond = daysofdate(m2, d2);
 
-    int days = daysofsecond - daysoffirst;
-    int answer = days/7 + 1;
-
+    for(int date = daysoffirst; date <= daysofsecond; date++)
+    {
+        if(curidx == returnidx(A) )
+        {
+           answer++; 
+        }
+        curidx = (curidx+1)%7;
+    }
     cout << answer;
 
 
