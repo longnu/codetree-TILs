@@ -1,55 +1,19 @@
 #include <iostream>
+
 using namespace std;
 
-
 int main() {
-    // 여기에 코드를 작성해주세요.
+    // 변수 선언 및 입력
     int a, b, c;
-
     cin >> a >> b >> c;
-
-    if(a<11)
-    {
-        return -1;
-    }
-    else if(a==11)
-    {
-        if(b<11) return -1;
-        else if(b==11)
-        {
-            if(c<11) return -1;
-        }
-    }
-    else{
-        
-    }
-
-    int elapesd_minute = 0;
-    int day = 11;
-    int hour = 11;
-    int minute = 11;
-
-    while(true)
-    {
-        if(day == a && hour == b && minute == c)
-        {
-            break;
-        }
-        minute++;
-        elapesd_minute++;
-        if(minute == 60)
-        {
-            hour++;
-            minute=0;
-        }
-        if(hour==24)
-        {
-            day++;
-            hour=0;
-        }
-    }
-
-    cout << elapesd_minute;
-
+    
+    // 차이를 계산합니다.
+    int diff = (a * 24 * 60 + b * 60 + c) - (11 * 24 * 60 + 11 * 60 + 11);
+    
+	// 출력
+    if(diff < 0)
+        cout << -1;
+    else
+        cout << diff;
     return 0;
 }
