@@ -5,15 +5,15 @@ using namespace std;
 string day_arr[7] = {"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
 int days_arr[13] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-int returnidx(string A)
-{
-    for (int i = 0 ; i < 7; i++)
-    {
-        if(day_arr[i] == A)
-        {
-            return i;
-        }
-    }
+int returnidx (string s) {
+    // 간단한 비교를 위해 요일을 숫자로 나타내줍니다.
+    if(s == "Mon") return 0;
+    else if(s == "Tue") return 1;
+    else if(s == "Wed") return 2;
+    else if(s == "Thu") return 3;
+    else if(s == "Fri") return 4;
+    else if(s == "Sat") return 5;
+    return 6;
 }
 
 int daysofdate(int month, int day)
