@@ -2,7 +2,7 @@
 using namespace std;
 
 #define MAX_N 10
-#define MAX_R 100
+#define MAX_R 200
 #define OFFSET 100
 
 int N;
@@ -18,7 +18,6 @@ int main() {
 
     for(int i = 0; i < N; i++)
     {
-        int x1, y1, x2, y2;
         cin >> x1[i] >> y1[i] >> x2[i] >> y2[i];
 
         x1[i] += OFFSET;
@@ -27,7 +26,7 @@ int main() {
         y2[i] += OFFSET;
     }
 
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < N; i++)
         {
             for(int x = x1[i]; x < x2[i]; x++)
             {
