@@ -18,18 +18,27 @@ int main() {
     int cnt = 0;
     for(int i = 0 ; i < n; i++)
     {
-        if(i>=1 && arr[i] > t)
+        if(i == 0)
         {
-            cnt++;
+            if(arr[i] > t)
+            {
+                cnt = 1;
+            }
+            else
+            {
+                cnt = 0;
+            }
         }
-        else if (i ==0 && arr[i] <= t)
-        {
-            cnt = 0;
+        else{
+            if(arr[i] > t)
+            {
+                cnt++;
+            }
+            else{
+                cnt = 1;
+            }
         }
-        else
-        {
-            cnt = 1;
-        }
+
 
         ans = max(ans, cnt);
     }
