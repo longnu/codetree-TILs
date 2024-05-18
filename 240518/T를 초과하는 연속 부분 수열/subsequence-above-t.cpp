@@ -35,7 +35,7 @@ int main() {
                 cnt++;
             }
             else{
-                cnt = 1;
+                cnt = 0;
             }
         }
 
