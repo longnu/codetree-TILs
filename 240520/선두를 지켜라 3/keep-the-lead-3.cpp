@@ -51,29 +51,33 @@ int main() {
     int max_time = max(a_time, b_time);
     int leader = 0;
     int cnt = 0;
-    for (int i = 1; i <= max_time; i++)
+    cout << a_time << " " << b_time << " " <<max_time << endl;
+    for (int i = 1; i < max_time; i++)
     {
         if(a_pos[i] > b_pos[i])
         {
-            if(leader == 2 || leader == 3)
+            if(leader != 1)
             {
                cnt++; 
+               cout<< "  i" << i <<  "  cnt " << cnt << "  leader "  << leader << endl; 
             }
             leader = 1;
         }
         
         else if(a_pos[i] < b_pos[i])
         {
-            if(leader == 1 || leader == 3)
+            if(leader != 2)
             {
                 cnt++;
+                cout<< "  i" << i <<  "  cnt " << cnt << "  leader "  << leader << endl;
             }
             leader = 2;
         }
         else{
-            if(leader == 1 || leader == 2)
+            if(leader != 3)
             {
                 cnt++;
+                cout<< "  i" << i <<  "  cnt " << cnt << "  leader "  << leader << endl;
             }
             leader = 3;
         }
