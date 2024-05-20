@@ -29,7 +29,7 @@ int main() {
                 {
                     if(grid[i][j] != grid[k][l] &&
                         grid[0][0] != grid[i][j] &&
-                        grid[k][l] != grid[n-1][n-1])
+                        grid[k][l] != grid[n-1][m-1])
                         cnt++;
                 }
             }
