@@ -1,74 +1,65 @@
 #include <iostream>
+#include <algorithm>
+
+#define DIR_NUM 8
+
 using namespace std;
+
 int arr[19][19];
 
-int main() {
-    // 여기에 코드를 작성해주세요.
+int dx[DIR_NUM] = {1, 1, 1, -1, -1, -1, 0, 0};
+int dy[DIR_NUM] = {-1, 0, 1, -1, 0, 1, -1, 1};
 
-    for(int i = 0; i < 19; i ++)
+int InRange(int x, int y) {
+    return 0 <= x && x < 19 && 0 <= y && y < 19;
+}
+
+int main(){
+    for(int i = 0; i < 19; i++)
     {
-        for(int j = 0; j < 19; j++)
+        for(int j = 0; j< 19; j++)
         {
             cin >> arr[i][j];
         }
     }
 
-
-    int iszero=true;
-    for(int i =0; i< 19 - 4; i++)
+    for(int i = 0; i < 19; i++)
     {
-        for(int j = 0; j<19 - 4; j++)
+        for(int j = 0; j< 19; j++)
         {
-            if(arr[i][j] == 1 && arr[i+1][j] == 1 && arr[i+2][j] == 1 && arr[i+3][j] ==1 && arr[i+4][j] ==1)
+            for(int k =0; K < DIR_NUM; k++)
             {
-                cout << 1 << endl;
-                cout << i+3 << " " << j+1;
-                iszero = false;
+                int curt = 1;
+                int curx = i;
+                int cury = j;
+                while(true)
+                {
+                    int nx = curx + dx[k];
+                    int ny = cury + dx[k];
+                    if(InRange(nx,ny) == false)
+                    {
+                        break;
+                    }
+                    if(arr[nx][ny]!=arr[i][j])
+                    {
+                        break;
+                    }
+                    curt++;
+                    curx=nx;
+                    cury=ny;
+                }
             }
-
-            else if(arr[i][j] == 2 && arr[i+1][j] == 2 && arr[i+2][j] == 2 && arr[i+3][j] ==2 && arr[i+4][j] ==2)
-            {
-                cout << 2 << endl;
-                cout << i+3 << " " << j+1;
-                iszero = false;
-            }
-
-            else if(arr[i][j] == 1 && arr[i][j+1] == 1 && arr[i][j+2] == 1 && arr[i][j+3] ==1 && arr[i][j+4] ==1)
-            {
-                cout << 1 << endl;
-                cout << i+1 << " " << j+3;
-                iszero = false;
-            }
-
-            else if(arr[i][j] == 2 && arr[i][j+1] == 2 && arr[i][j+2] == 2 && arr[i][j+3] ==2 && arr[i][j+4] ==2)
-            {
-                cout << 2 << endl;
-                cout << i+1 << " " << j+3;
-                iszero = false;
-            }
-
-            else if(arr[i][j] == 1 && arr[i+1][j+1] == 1 && arr[i+2][j+2] == 1 && arr[i+3][j+3] ==1 && arr[i+4][j+4] ==1)
-            {
-                cout << 1 << endl;
-                cout << i+3 << " " << j+3;
-                iszero = false;
-            }
-
-            else if(arr[i][j] == 2 && arr[i+1][j+1] == 2 && arr[i+2][j+2] == 2 && arr[i+3][j+3] == 2 && arr[i+4][j+4] == 2)
-            {
-                cout << 2 << endl;
-                cout << i+3 << " " << j+3;
-                iszero = false;
-            }
+            if(curt == 5) {
+					cout << arr[i][j] << endl;
+					cout << i + 2 * dx[k] + 1 << " " << j + 2 * dy[k] + 1;
+					return 0;
+				}
         }
     }
-    if(iszero)
-    {
-        cout << 0;
-    }
-    
 
 
 
-    return 0;
+
+
+
 }
