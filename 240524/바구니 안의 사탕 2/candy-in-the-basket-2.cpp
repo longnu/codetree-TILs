@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-#define MAX_N 100
-int arr[MAX_N+1];
+#define MAX_N 101
+int arr[MAX_N];
 
 
 int main() {
@@ -17,7 +17,7 @@ int main() {
     }
 
     int answer = 0;
-    for(int i = 0; i <= MAX_N + 1 - 2*k; i++)
+    for(int i = 0; i <= MAX_N - 1 - 2*k; i++)
     {
         int sum = 0;
         for(int j = i; j <= i + 2*k; j++)
