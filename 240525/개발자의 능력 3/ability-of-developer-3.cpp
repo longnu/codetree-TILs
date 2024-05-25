@@ -1,13 +1,13 @@
 #include <iostream>
 #include <climits>
-
+using namespace std;
 int arr[6];
 
 int GetDiff(int i, int j, int k) {
     int sum1 = arr[i] + arr[j] + arr[k];
     int sum2 =  0;
     for(int k = 0; k < 6; k++)
-        sum2 += numbers[k];
+        sum2 += arr[k];
     sum2 -= sum1;
     return abs(sum1 - sum2);
 }
