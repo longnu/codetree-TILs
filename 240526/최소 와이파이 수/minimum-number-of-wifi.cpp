@@ -1,41 +1,29 @@
 #include <iostream>
-using namespace std;
+
 #define MAX_N 100
-int arr[MAX_N+1];
+
+using namespace std;
+
+int n, m;
+int arr[MAX_N];
 
 int main() {
-    int n = 0;
-    cin >> n;
-
-    int m = 0;
-    cin >> m;
-
-    for (int i = 0; i < n; i++) {
+    // 입력:
+    cin >> n >> m;
+    for(int i = 0; i < n; i++)
         cin >> arr[i];
-    }
-
+    
+    // 사람이 살고 있는 곳이 나오면
+    // 와이파이를 해당 위치로부터 오른쪽으로 m만큼 떨어진 곳에 놓은 뒤,
+    // 2m만큼 떨어진 곳에서 시작하여 다시 탐색을 진행합니다.
     int cnt = 0;
-    int i = 0;
-    while (i < n) {
-        // 와이파이를 설치할 위치 찾기
-        int install_pos = -1;
-        for (int j = i + m; j >= i - m && j >= 0 && j < n; j--) {
-            if (arr[j] == 1) {
-                install_pos = j;
-                break;
-            }
+    for(int i = 0; i < n; i++) {
+        if(arr[i] == 1) {
+            cnt++;
+            i += 2 * m + 1;
         }
-
-        // 와이파이를 설치할 위치가 없다면 그 위치에서 가장 오른쪽 위치에 설치
-        if (install_pos == -1) {
-            install_pos = i + m < n ? i + m : n - 1;
-        }
-
-        cnt++;
-        i = install_pos + m + 1; // 다음 위치로 이동
     }
-
+    
     cout << cnt;
-
     return 0;
 }
