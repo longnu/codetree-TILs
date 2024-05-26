@@ -9,17 +9,17 @@ int main() {
     // 여기에 코드를 작성해주세요.
     int n = 0;
     cin >> n;
-    for(int i = 0; i < n; i ++)
+    for(int i = 0; i < MAX_N+1; i ++)
     {
         cin >> x1[i];
         cin >> x2[i];
     }
     bool pass = false;
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < MAX_N+1; i++)
     {
         int maxx1 = 0;
         int minx2 = 100;
-        for(int j = 0; j < n; j++)
+        for(int j = 0; j < MAX_N+1; j++)
         {
             if(i==j) continue;
             maxx1 = max(maxx1, x1[j]);
