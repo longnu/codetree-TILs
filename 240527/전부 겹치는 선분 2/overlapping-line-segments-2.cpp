@@ -1,49 +1,52 @@
 #include <iostream>
-using namespace std;
+#include <algorithm>
+#include <climits>
+
 #define MAX_N 100
-int arr[MAX_N+1];
-int x1[MAX_N+1];
-int x2[MAX_N+1];
+
+using namespace std;
+
+int n;
+int x1[MAX_N], x2[MAX_N];
+bool ans = false;
 
 int main() {
-    // 여기에 코드를 작성해주세요.
-    int n = 0;
+    // 입력
     cin >> n;
-    for(int i = 0; i < MAX_N+1; i ++)
-    {
-        cin >> x1[i];
-        cin >> x2[i];
-    }
-    bool pass = false;
-    for(int i = 0; i < MAX_N+1; i++)
-    {
-        int maxx1 = 0;
-        int minx2 = 100;
-        for(int j = 0; j < MAX_N+1; j++)
-        {
-            if(i==j) continue;
-            maxx1 = max(maxx1, x1[j]);
-            minx2 = min(minx2, x2[j]);
-        }
-        if(minx2 > maxx1)
-        {
-            pass = false;
-        }
-        else
-        {
-            pass = true;
-            break;
-        }
-    }
-    if(pass = true)
-    {
-        cout << "Yes";
-    }
-    else
-    {
-        cout << "No";
-    }
+    for(int i = 0; i < n; i++)
+        cin >> x1[i] >> x2[i];
     
+    // 모든 선분을 한번씩 지어 보고, 모든 상황에 대해
+    // 전부 겹치는 지점을 하나라도 만들 수 있는지 판단합니다.
+    for(int skip = 0; skip < n; skip++) {
+        int max_x1 = 0;
+        int min_x2 = INT_MAX;
+        bool possible = false;
+        for(int i = 0; i < n; i++) {
+            if(i == skip) continue;
+
+            // 시작점 중 가장 뒤에 있는 좌표와 끝점 중 가장 앞에 있는 점의 좌표를 확인합니다.
+            max_x1 = max(max_x1, x1[i]);
+            min_x2 = min(min_x2, x2[i]);
+        }
+
+        // 만약 어느 한 선분이라도 시작점이 다른 선분의 끝점보다 뒤에 온다면
+        // 선분이 전부 겹칠 수 없습니다.
+        if(min_x2 >= max_x1)
+            possible = true;
+        else
+            possible = false;
+        
+        // 만약 한 가지 방법이라도 전부 겹치는 지점을 만들 수 있다면,
+        // 하나의 선분을 적절하게 제거했을 때 전부 겹칠수 있다는 것이 되므로 할 수 있게 됩니다.
+        if(possible)
+            ans = true;
+    }
+
+    if(ans)
+        cout << "Yes";
+    else
+        cout << "No";
 
     return 0;
 }
