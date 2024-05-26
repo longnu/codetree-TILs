@@ -1,24 +1,30 @@
 #include <iostream>
-using namespace std;
+
 #define MAX_N 10000
-int arr[MAX_N + 1];
+
+using namespace std;
+
+int n;
+int blocks[MAX_N];
 
 int main() {
-    // 여기에 코드를 작성해주세요.
-    int n = 0;
+    // 입력:
     cin >> n;
-    for(int = 0 ; i < n ; i++)
-    {
-        cin >> arr[i];
-    }
-    int sum = 0;
-    for(int j = 0; j < n; j++)
-    {
-        sum = sum + arr[j];
-    }
-    int average = sum / n;
-    int ans = 0;
+    for(int i = 0; i < n; i++)
+        cin >> blocks[i];
     
+    // 전체 블럭 수를 셉니다.
+    int sum_of_blocks = 0;
+    for(int i = 0; i < n; i++)
+        sum_of_blocks += blocks[i];
+    
+    // 평균 블럭 수 보다 더 큰 블럭에 대해서만
+    // 그 차이만큼 옮겨주면 됩니다.
+    int avg = sum_of_blocks / n;
+    int ans = 0;
+    for(int i = 0; i < n; i++)
+        if(blocks[i] > avg)
+            ans += blocks[i] - avg;
 
-    return 0;
+    cout << ans;
 }
