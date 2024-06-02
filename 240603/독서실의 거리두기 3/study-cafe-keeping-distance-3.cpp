@@ -14,8 +14,7 @@ int main() {
         if(a[i]=='0')
         {
             a[i] = '1';
-        }
-        int min_dis = INT_MAX;
+            int min_dis = INT_MAX;
         for(int j =0 ; j < n; j++)
         {
             for(int k = j+1; k < n; k++)
@@ -29,6 +28,8 @@ int main() {
         max_ans = max(max_ans,min_dis);
 
         a[i] = '0';
+        }
+        
     }
     cout << max_ans;
 
