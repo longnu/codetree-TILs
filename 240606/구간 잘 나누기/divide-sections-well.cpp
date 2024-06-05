@@ -52,7 +52,7 @@ int main() {
             cnt += a[j];
         }
 
-        if(possible && section == m) {
+        if(possible && section <= m) {
             ans = min(ans, i);
         }
     }
