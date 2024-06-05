@@ -1,4 +1,3 @@
-Dislike
 X = int(input())
 
 curr_pos = 0
