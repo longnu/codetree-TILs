@@ -1,62 +1,44 @@
 #include <iostream>
-#include <cstdlib>
 #include <algorithm>
+#include <climits>
 
 #define MAX_N 100
 #define MAX_K 10000
 
 using namespace std;
-int n, k;   // n개의 수, 최대 최소간의 차이가 k이하
-int a[MAX_N];
+
+int n, k;
+int arr[MAX_N];
+
+int GetCost(int low, int high) {
+    int cost = 0;
+
+    // 각 수에 대해 low ~ high 사이로 바꾸는데 드는 cost를 계산해 줍니다.
+    for(int i = 0; i < n; i++) {
+        // low보다 작은 경우 low로 만들어 주는 게 최소 cost입니다.
+        if(arr[i] < low) cost += low - arr[i];
+        // high보다 큰 경우 high로 만들어 주는게 최소 cost입니다.
+        if(arr[i] > high) cost += arr[i] - high;
+        // 그 외의 경우 이미 구간 안에 있기 때문에 cost가 필요하지 않습니다.
+    }
+
+    return cost;
+}
 
 int main() {
     // 입력:
     cin >> n >> k;
-    int cur_min = MAX_K, cur_max = 1;
-    for(int i=0; i<n; i++)
-        cin >> a[i];
-    
-    int cost = 0;    // 비용
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
 
-    while(true){
-        // cur_min, cur_max: 현재 배열에서 최소, 최댓값
-        // minI, maxI: 그 최소, 최댓값의 인덱스
-        int cur_min = MAX_K, minI=0, cur_max = 1, maxI = 0; 
-        // 현재 최대/최소값 찾기
-        for(int i=0; i<n; i++){
-            // n개의 숫자를 보면서
-            if(cur_min > a[i]){
-                cur_min = a[i];
-                minI = i;
-            }
-            if(cur_max < a[i]){
-                cur_max = a[i];
-                maxI = i;
-            }
-        }
-
-        // 현재 배열에서 최댓값, 최솟값 개수 구하기(중복된 숫자가 있을 수 있으니)
-        int min_cnt = 0, max_cnt = 0;
-        for(int i=0; i<n; i++){
-            if(cur_min == a[i]) min_cnt++;
-            if(cur_max == a[i]) max_cnt++;
-        }
-
-        // 만약 최대-최소 차이가 k이하라면 조건 만족했으므로 반복문 나가기
-        if(cur_max - cur_min <= k) break;
-        else{
-            // 최대, 최소 중 적은 개수부터 변화하기 (비용을 낮추기 위해)
-            if(min_cnt >= max_cnt){   // 배열에서 최댓값의 개수가 최솟값의 개수보다 작거나 같다면
-                a[maxI]--;                      // 최댓값을 먼저 변화시키기
-                cost++;
-            }
-            else{
-                a[minI]++;                    // 최솟값을 먼저 변화시키기
-                cost++;
-            }
-        }
+    int ans = INT_MAX;
+    // 모든 구간 쌍 (num, num + k)를 잡아보며
+    // 그 구간으로 만들기 위한 비용을 계산하여
+    // 그 중 최솟값을 계산합니다.
+    for(int num = 1; num <= MAX_K; num++) {
+        ans = min(ans, GetCost(num, num + k));
     }
-    cout << cost;
 
+    cout << ans;
     return 0;
 }
