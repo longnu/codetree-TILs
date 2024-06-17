@@ -31,8 +31,8 @@ int main() {
     {
         int x = r;
         int y = c;
-        int count = grid[x][y];
-        while(--count)
+        int count = grid[x][y]-1;
+        while(count>0)
         {
             int nx = x+dx[i];
             int ny = y+dy[i];
@@ -40,6 +40,7 @@ int main() {
             {
                 grid[nx][ny] = 0;
             }
+            count--;
         }
     }
     grid[r][c] = 0;
