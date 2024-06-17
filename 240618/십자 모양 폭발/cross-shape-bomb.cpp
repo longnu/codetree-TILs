@@ -10,7 +10,7 @@ int dy[DIR_NUM] = {1,0,-1,0};
 
 bool InRange(int x, int y)
 {
-    return x>=0 && x <=n && y >=0 && y <= n; 
+    return x>=1 && x <=n && y >=1 && y <= n; 
 }
 
 int main() {
