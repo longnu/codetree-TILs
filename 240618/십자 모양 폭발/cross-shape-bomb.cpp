@@ -45,7 +45,15 @@ int main() {
     }
     grid[r][c] = 0;
 
-    
+    for(int i =1; i <= n; i++)
+    {
+        for(int j = 1; j <= n; j++)
+        {
+            cout << grid[i][j] << " ";
+        }
+        cout << endl;
+    }    
+
 
     
 
@@ -70,14 +78,7 @@ int main() {
         }
     }
 
-    for(int i =1; i <= n; i++)
-    {
-        for(int j = 1; j <= n; j++)
-        {
-            cout << grid[i][j] << " ";
-        }
-        cout << endl;
-    }    
+
 
         
     return 0;
