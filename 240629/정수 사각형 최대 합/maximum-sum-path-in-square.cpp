@@ -2,38 +2,24 @@
 #include <algorithm>
 
 #define MAX_NUM 1000
-#define DIR_NUM 2
 
 using namespace std;
 
 int n;
-int grid[MAX_NUM][MAX_NUM];
+int num[MAX_NUM][MAX_NUM];
+int dp[MAX_NUM][MAX_NUM];
 
-int max_sum;
+void Initialize() {
+    // 시작점의 경우 dp[0][0] = num[0][0]으로 초기값을 설정해줍니다
+    dp[0][0] = num[0][0];
 
-bool InRange(int x, int y) {
-    return (0 <= x && x < n && 0 <= y && y < n);
-}
+    // 최좌측 열의 초기값을 설정해줍니다.
+    for(int i = 1; i < n; i++)
+        dp[i][0] = dp[i-1][0] + num[i][0];
 
-void FindMaxSum(int x, int y, int sum) {
-
-    // 도착 지점에 도착하면 최대 합을 갱신해줍니다.
-    if( (x ==  n - 1) &&  (y == n - 1) ){
-        max_sum = max(max_sum, sum);
-        return ;
-    }
-
-    int dx[DIR_NUM] = {1, 0};
-    int dy[DIR_NUM] = {0, 1};
-
-    // 가능한 방향에 대해 탐색해줍니다.
-    for(int i = 0; i < DIR_NUM; i++) {
-        int new_x = x + dx[i];
-        int new_y = y + dy[i];
-
-        if(InRange(new_x, new_y))
-            FindMaxSum(new_x, new_y, sum + grid[new_x][new_y]);
-    }
+    // 최상단 행의 초기값을 설정해줍니다.
+    for(int j = 1; j < n; j++)
+        dp[0][j] = dp[0][j-1] + num[0][j];
 }
 
 int main() {
@@ -41,10 +27,19 @@ int main() {
 
     for(int i = 0; i < n; i++)
         for(int j = 0; j < n; j++)
-            cin >> grid[i][j];
+            cin >> num[i][j];
 
-    FindMaxSum(0, 0, grid[0][0]);
-    cout << max_sum;
+    // 초기값 설정
+    Initialize();
+
+    // 탐색하는 위치의 위에 값과 좌측 값 중에 큰 값에
+    // 해당 위치의 숫자를 더해줍니다. 
+    for(int i = 1; i < n; i++)
+        for(int j = 1; j < n; j++) 
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + num[i][j];
+
+
+    cout << dp[n-1][n-1];
 
     return 0;
 }
