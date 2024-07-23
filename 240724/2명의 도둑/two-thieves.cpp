@@ -1,24 +1,39 @@
 #include <iostream>
-using namespace std;
-int n, m, c;
+#include <algorithm>
+
 #define MAX_N 10
 #define MAX_M 5
-int weight [MAX_N][MAX_N];
+
+using namespace std;
+
+// 전역 변수 선언:
+int n, m, c;
+int weight[MAX_N][MAX_N];
+
 int a[MAX_M];
 
 int ans;
 int max_val;
 
-void FindMaxSum(int curr_idx, int curr_weight, int curr_val)
-{
-    if(curr_idx == m)
-    {
-        max_val = max(max_val, curr_val);
+void FindMaxSum(int curr_idx, int curr_weight, int curr_val) {
+    if(curr_idx == m) {
+        // 고른 무게들의 합이 c를 넘지 않는 경우에만 갱신합니다.
+        if(curr_weight <= c)
+            max_val = max(max_val, curr_val);
+        return;
     }
+
+    // curr_idx index 에 있는 숫자를 선택하지 않은 경우
+    FindMaxSum(curr_idx + 1, curr_weight, curr_val);
     
-    FindMaxSum(curr_idx + 1,  )
+    // curr_idx index 에 있는 숫자를 선택한 경우
+    // 무게는 a[curr_idx] 만큼 늘지만
+    // 문제 정의에 의해 가치는 a[curr_idx] * a[curr_idx] 만큼 늘어납니다.
+    FindMaxSum(curr_idx + 1, curr_weight + a[curr_idx], 
+			   curr_val + a[curr_idx] * a[curr_idx]);
 }
 
+// (sx, sy) ~ (sx, sy + m - 1) 까지의 숫자들 중 적절하게 골라
 // 무게의 합이 c를 넘지 않게 하면서 얻을 수 있는 최대 가치를 반환합니다.
 int FindMax(int sx, int sy) {
     // 문제를 a[0] ~ a[m - 1]까지 m개의 숫자가 주어졌을 때
@@ -34,30 +49,33 @@ int FindMax(int sx, int sy) {
     return max_val;
 }
 
-bool Intersect(int a, int b, int c, int d)
-{
-    return c <= b || a <= d;
+// [a, b], [c, d] 이 두 선분이 겹치는지 판단합니다.
+bool Intersect(int a, int b, int c, int d) {
+	// 겹치지 않을 경우를 계산하여 그 결과를 반전시켜 반환합니다.
+    return ! (b < c || d < a); 
 }
 
-bool IsPossible(int sx1, int sy1, int sx2, int sy2)
-{
-    if(sx + m -1 >= n || sy + m - 1 >= n)
-    {
-        return false;
-    }
-
-    if(sx1 != sx2)
-    {
-        return true;
-    }
-
-    if(Intersect(sy1, sy1 + m - 1, sy2, sy2 + m -1))
-        return false;
-
-    return true;
-}
-
-
+// 두 도둑의 위치가 올바른지 판단합니다.
+bool Possible(int sx1, int sy1, int sx2, int sy2) {
+	// 두 도둑이 훔치려는 물건의 범위가 
+	// 격자를 벗어나는 경우에는 불가능합니다.
+    if(sy1 + m - 1 >= n || sy2 + m - 1 >= n) 
+        return false;                        
+    
+	// 두 도둑이 훔칠 위치의 행이 다르다면
+	// 겹칠 수가 없으므로 무조건 가능합니다.
+    if(sx1 != sx2)                          
+        return true;                        
+    
+	// 두 구간끼리 겹친다면
+	// 불가능합니다.
+    if(Intersect(sy1, sy1 + m - 1, sy2, sy2 + m - 1)) 
+        return false;                               
+    
+	// 행이 같으면서 구간끼리 겹치지 않으면
+	// 가능합니다.
+    return true;                             
+}                                           
 
 int main() {
     // 입력:
