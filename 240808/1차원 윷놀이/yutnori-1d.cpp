@@ -32,7 +32,7 @@ void initialize()
     }
 }
 
-void recur (int step)
+void recur(int step)
 {
     if(step == n)
     {
