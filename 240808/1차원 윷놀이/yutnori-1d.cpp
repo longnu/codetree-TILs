@@ -11,17 +11,12 @@ int mal[MAX_K];
 
 int ans;
 
-int calc()
-{
-    int cnt = 0;
-    for(int i = 0; i < k; i++)
-    {
-        if(mal[i] >= m)
-        {
-            cnt++;
-        }
-    }
-    return cnt;
+int calc() {
+	int score = 0;
+	for(int i = 0; i < k; i++)
+		score += (mal[i] >= m);
+    
+	return score;
 }
 
 void initialize()
@@ -34,9 +29,10 @@ void initialize()
 
 void recur(int step)
 {
+    ans = max(ans, calc());
     if(step == n)
     {
-        ans = max(ans, calc());
+        
         return; // Ensure we stop recursion here
     }
 
