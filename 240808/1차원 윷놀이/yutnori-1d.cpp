@@ -37,7 +37,7 @@ void recur (int step)
     if(step == n)
     {
         ans = max(ans, calc());
-        return;
+        return; // Ensure we stop recursion here
     }
 
     for(int i = 0; i < k; i++)
@@ -57,9 +57,11 @@ int main() {
         cin >> turn[i];
     }
 
+    initialize();
+    ans = 0;
     recur(0);
-    cout << ans;
 
+    cout << ans << endl;
 
     return 0;
 }
