@@ -19,14 +19,6 @@ int calc() {
 	return score;
 }
 
-void initialize()
-{
-    for(int i = 0; i < k; i++)
-    {
-        mal[i] = 0; 
-    }
-}
-
 void recur(int step)
 {
     ans = max(ans, calc());
@@ -53,7 +45,9 @@ int main() {
         cin >> turn[i];
     }
 
-    initialize();
+    for(int i = 0; i < k; i++)
+		mal[i] = 1;
+
     ans = 0;
     recur(0);
 
