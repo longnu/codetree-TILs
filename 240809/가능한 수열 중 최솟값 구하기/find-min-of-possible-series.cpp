@@ -31,7 +31,13 @@ bool IsPossibleSeries()
     while(true)
     {
         int end1 = (int)series.size() - 1, start1 = end1 - len + 1;
-        int end2 = start1 - 1, start2 = end - len + 1;
+        int end2 = start1 - 1, start2 = end2 - len + 1;
+
+        if(start2 < 0)
+        {
+            break;
+        }
+
         if(IsEqual(start1, end1, start2, end2))
             return false;
         len++;
