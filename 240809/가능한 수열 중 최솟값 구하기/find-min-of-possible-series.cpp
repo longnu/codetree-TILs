@@ -47,8 +47,6 @@ void FindMinSeries(int cnt)
 {
     if(cnt == n)
     {
-        if(!IsPossibleSeries())
-            return;    
         for(int i = 0; i < series.size(); i++)
             cout << series[i];
         exit(0);
@@ -57,7 +55,8 @@ void FindMinSeries(int cnt)
     for(int i = 0; i < NUM_LEN; i++)
     {
         series.push_back(numbers[i]);
-        FindMinSeries(cnt+1);
+        if(IsPossibleSeries())
+            FindMinSeries(cnt + 1);
         series.pop_back();
     }
 }
