@@ -27,20 +27,16 @@ bool IsEqual(int start1, int end1, int start2, int end2)
 
 bool IsPossibleSeries()
 {
-    for (int idx = 0; idx <(int) series.size(); idx++)
+    int len = 1;
+    while(true)
     {
-        int len = 1;
-        while(true)
-        {
-            int start1 = idx, end1 = idx + len - 1;
-            int start2 = end1 + 1, end2 = start2 + len - 1;
-            if(end2 >= (int) series.size())
-                break;
-            if(IsEqual(start1, end1, start2, end2))
-                return false;
-            len++;
-        }
+        int end1 = (int)series.size() - 1, start1 = end1 - len + 1;
+        int end2 = start1 - 1, start2 = end - len + 1;
+        if(IsEqual(start1, end1, start2, end2))
+            return false;
+        len++;
     }
+    return true;
 }
 
 void FindMinSeries(int cnt)
