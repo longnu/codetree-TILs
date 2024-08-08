@@ -1,4 +1,7 @@
 #include <iostream>
+#include <algorithm>
+#include <vector>
+#include <cstdlib>
 using namespace std;
 #define MAX_N 80
 #define NUM_LEN 3
